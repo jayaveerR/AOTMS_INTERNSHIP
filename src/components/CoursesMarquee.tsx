@@ -28,68 +28,44 @@ const courses = [
 
 export const CoursesMarquee = () => {
   return (
-    <section className="py-12 bg-muted/30 overflow-hidden border-y border-border/30">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left Content */}
-          <motion.div 
-            className="lg:col-span-4"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <span className="text-xs font-semibold text-accent uppercase tracking-widest">
-              Our Courses
-            </span>
-            <h2 className="text-xl md:text-2xl font-bold text-foreground mt-2 mb-3">
-              Industry-Ready <span className="text-primary">Training Programs</span>
-            </h2>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              Explore our comprehensive range of IT courses designed to make you job-ready.
-            </p>
-          </motion.div>
-
-          {/* Right Marquee */}
-          <div className="lg:col-span-8 relative overflow-hidden">
-            {/* Gradient overlays */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-muted/30 to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-muted/30 to-transparent z-10 pointer-events-none" />
-            
-            <div className="flex">
-              <div className="flex animate-marquee items-center gap-10">
-                {courses.map((course, index) => {
-                  const IconComponent = course.icon;
-                  return (
-                    <div
-                      key={`first-${index}`}
-                      className="flex items-center gap-2 whitespace-nowrap"
-                    >
-                      <IconComponent className="w-5 h-5 text-primary/60" strokeWidth={1.5} />
-                      <span className="text-sm font-medium text-muted-foreground">
-                        {course.name}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="flex animate-marquee items-center gap-10 ml-10">
-                {courses.map((course, index) => {
-                  const IconComponent = course.icon;
-                  return (
-                    <div
-                      key={`second-${index}`}
-                      className="flex items-center gap-2 whitespace-nowrap"
-                    >
-                      <IconComponent className="w-5 h-5 text-primary/60" strokeWidth={1.5} />
-                      <span className="text-sm font-medium text-muted-foreground">
-                        {course.name}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+    <section className="py-8 bg-muted/20 overflow-hidden border-y border-border/30">
+      <div className="relative">
+        {/* Gradient overlays */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-muted/20 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-muted/20 to-transparent z-10 pointer-events-none" />
+        
+        <div className="flex">
+          <div className="flex animate-marquee items-center gap-16">
+            {courses.map((course, index) => {
+              const IconComponent = course.icon;
+              return (
+                <div
+                  key={`first-${index}`}
+                  className="flex items-center gap-3 whitespace-nowrap"
+                >
+                  <IconComponent className="w-7 h-7 text-primary/50" strokeWidth={1.5} />
+                  <span className="text-xl font-display font-semibold text-muted-foreground/70 tracking-wide">
+                    {course.name}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex animate-marquee items-center gap-16 ml-16">
+            {courses.map((course, index) => {
+              const IconComponent = course.icon;
+              return (
+                <div
+                  key={`second-${index}`}
+                  className="flex items-center gap-3 whitespace-nowrap"
+                >
+                  <IconComponent className="w-7 h-7 text-primary/50" strokeWidth={1.5} />
+                  <span className="text-xl font-display font-semibold text-muted-foreground/70 tracking-wide">
+                    {course.name}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
