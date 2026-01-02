@@ -8,32 +8,11 @@ import {
     CarouselItem,
 } from "@/components/ui/carousel";
 import {
-    SiReact,
-    SiPython,
-    SiAmazonwebservices,
-    SiDocker,
-    SiKubernetes,
-    SiSelenium,
-    SiNodedotjs,
-    SiJavascript,
-    SiTypescript,
-    SiMongodb,
-    SiPostgresql,
-    SiDjango,
-    SiSpringboot,
-    SiGithub,
-    SiFigma,
-    SiAdobephotoshop,
-    SiAndroid,
-    SiTerraform,
-    SiJenkins,
-    SiLinux,
-    SiOpenai,
-    SiGooglecloud,
-    SiNextdotjs,
-    SiTailwindcss,
-    SiSupabase,
-    SiVercel
+    SiReact, SiPython, SiAmazonwebservices, SiDocker, SiKubernetes,
+    SiSelenium, SiNodedotjs, SiJavascript, SiTypescript, SiMongodb,
+    SiPostgresql, SiDjango, SiSpringboot, SiGithub, SiFigma,
+    SiTerraform, SiJenkins, SiLinux, SiOpenai, SiGooglecloud,
+    SiNextdotjs, SiTailwindcss, SiSupabase, SiVercel
 } from "react-icons/si";
 
 interface Logo {
@@ -41,14 +20,6 @@ interface Logo {
     description: string;
     icon?: any;
     color?: string;
-    image?: string;
-    className?: string;
-}
-
-interface Logos3Props {
-    heading?: string;
-    logos?: Logo[];
-    className?: string;
 }
 
 const defaultLogos: Logo[] = [
@@ -68,49 +39,52 @@ const defaultLogos: Logo[] = [
     { id: "tech-15", description: "Google Cloud", icon: SiGooglecloud, color: "#4285F4" },
 ];
 
+interface Logos3Props {
+    heading?: string;
+    logos?: Logo[];
+    className?: string;
+}
+
 const Logos3 = ({
-    heading = "",
+    heading = "Powering Your Career with the Industry's Leading Technologies",
     logos = defaultLogos,
     className = "",
 }: Logos3Props) => {
     return (
-        <section className={`py-12 bg-white ${className}`}>
+        <section className={`py-8 sm:py-16 bg-secondary ${className}`}>
             {heading && (
-                <div className="container flex flex-col items-center text-center mb-10">
-                    <h2 className="text-2xl font-bold lg:text-3xl text-slate-900 tracking-tight">
+                <div className="container mx-auto text-center mb-8">
+                    <h2 className="section-subheading !text-base sm:!text-lg">
                         {heading}
                     </h2>
                 </div>
             )}
             <div className="relative mx-auto flex items-center justify-center">
                 <Carousel
-                    opts={{ loop: true }}
+                    opts={{ loop: true, align: "start" }}
                     plugins={[AutoScroll({ playOnInit: true, speed: 1.0, stopOnInteraction: false, stopOnMouseEnter: true })]}
                     className="w-full"
                 >
-                    <CarouselContent className="ml-0">
-                        {logos.map((logo) => (
+                    <CarouselContent className="-ml-4">
+                        {[...logos, ...logos].map((logo, index) => (
                             <CarouselItem
-                                key={logo.id}
-                                className="flex basis-1/2 justify-center pl-0 sm:basis-1/3 md:basis-1/4 lg:basis-1/6"
+                                key={`${logo.id}-${index}`}
+                                className="pl-4 flex basis-1/2 justify-center sm:basis-1/3 md:basis-1/5 lg:basis-1/6"
                             >
-                                <div className="flex items-center justify-center gap-2.5 px-4 group select-none">
+                                <div className="flex items-center justify-center gap-3 px-4 py-2 group select-none">
                                     {logo.icon && (
                                         <logo.icon
-                                            className="w-7 h-7 sm:w-8 sm:h-8 transition-transform duration-300 group-hover:scale-110"
+                                            className="w-8 h-8 sm:w-9 sm:h-9 text-muted-foreground group-hover:scale-110 transition-transform duration-300"
                                             style={{ color: logo.color }}
                                         />
                                     )}
-                                    <span className="text-base sm:text-lg font-bold text-slate-800 tracking-tight whitespace-nowrap">
-                                        {logo.description}
-                                    </span>
                                 </div>
                             </CarouselItem>
                         ))}
                     </CarouselContent>
                 </Carousel>
-                <div className="absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-                <div className="absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-secondary via-secondary/80 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-secondary via-secondary/80 to-transparent z-10 pointer-events-none"></div>
             </div>
         </section>
     );

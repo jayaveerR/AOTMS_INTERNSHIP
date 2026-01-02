@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { coursesData } from "@/data/courses";
+import logo from "@/assets/logo.png"; // Importing the logo image
 
 const quickLinks = [
   { name: "Home", href: "/" },
@@ -38,147 +39,166 @@ const socialLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="bg-white text-black border-t border-gray-100">
-      <div className="container mx-auto px-6 py-12 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+    <footer className="relative bg-primary text-primary-foreground pt-12 sm:pt-16 md:pt-24 pb-8 sm:pb-12 overflow-hidden border-t border-primary-foreground/10">
+      {/* Dynamic Background Elements */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary-foreground/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-black/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-20">
+          {/* Brand & Contact Section */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8 }}
           >
-            <h3 className="text-3xl font-display font-black mb-6 flex items-center gap-2">
-              <span className="text-[#008bf8]">AO</span><span>TMS</span>
-            </h3>
-            <p className="text-sm text-gray-500 leading-relaxed mb-8 max-w-xs">
-              At Academy of Tech Masters, we believe that the right skills can transform careers.
+            <Link to="/" className="inline-block group mb-6">
+              <img src={logo} alt="AOTMS Logo" className="h-10 sm:h-12 w-auto filter invert" />
+            </Link>
+
+            <p className="text-primary-foreground/80 text-sm leading-relaxed mb-8 max-w-xs font-medium">
+              Transforming careers through industry-leading tech education. Master the future with Academy of Tech Masters.
             </p>
 
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <a href="tel:+918019942233" className="flex items-center gap-3 text-sm text-gray-600 hover:text-[#008bf8] transition-colors group">
-                  <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center group-hover:bg-[#008bf8]/10">
-                    <Phone className="w-4 h-4 text-[#008bf8]" />
+            <div className="space-y-5">
+              <div className="flex flex-col gap-2">
+                <a href="tel:+918019942233" className="group flex items-center gap-3 text-primary-foreground hover:text-primary-foreground/70 transition-colors duration-300">
+                  <div className="w-8 h-8 rounded-full bg-primary-foreground/10 flex items-center justify-center border border-primary-foreground/20 group-hover:bg-primary-foreground/20 transition-colors">
+                    <Phone className="w-4 h-4" />
                   </div>
-                  <span>+91 80199 42233</span>
+                  <span className="text-sm font-semibold">+91 80199 42233</span>
                 </a>
-                <a href="tel:+918019952233" className="flex items-center gap-3 text-sm text-gray-600 hover:text-[#008bf8] transition-colors group ml-11">
-                  <span>+91 80199 52233</span>
-                </a>
-                <a href="tel:+918019962233" className="flex items-center gap-3 text-sm text-gray-600 hover:text-[#008bf8] transition-colors group ml-11">
-                  <span>+91 80199 62233</span>
-                </a>
+                <div className="pl-11 space-y-1">
+                  <a href="tel:+918019952233" className="block text-xs text-primary-foreground/70 hover:text-primary-foreground transition-colors">+91 80199 52233</a>
+                  <a href="tel:+918019962233" className="block text-xs text-primary-foreground/70 hover:text-primary-foreground transition-colors">+91 80199 62233</a>
+                </div>
               </div>
 
-              <a href="mailto:Info@aotms.com" className="flex items-center gap-3 text-sm text-gray-600 hover:text-[#ff6b00] transition-colors group">
-                <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center group-hover:bg-[#ff6b00]/10">
-                  <Mail className="w-4 h-4 text-[#ff6b00]" />
+              <a href="mailto:Info@aotms.com" className="group flex items-center gap-3 text-primary-foreground hover:text-primary-foreground/70 transition-colors duration-300">
+                <div className="w-8 h-8 rounded-full bg-primary-foreground/10 flex items-center justify-center border border-primary-foreground/20 group-hover:bg-primary-foreground/20 transition-colors">
+                  <Mail className="w-4 h-4" />
                 </div>
-                <span>Info@aotms.com</span>
+                <span className="text-sm font-semibold">Info@aotms.com</span>
               </a>
 
-              <div className="flex items-start gap-3 text-sm text-gray-600">
-                <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4 text-black" />
+              <div className="flex items-start gap-3 text-primary-foreground group cursor-default">
+                <div className="w-8 h-8 rounded-full bg-primary-foreground/10 flex items-center justify-center border border-primary-foreground/20 shrink-0">
+                  <MapPin className="w-4 h-4" />
                 </div>
-                <span>Pothuri Towers, 2nd Floor,<br />MG Road, Near DV manor,<br />VJA - 10</span>
+                <span className="text-sm leading-6 font-medium text-primary-foreground/80">
+                  Pothuri Towers, 2nd Floor,<br />
+                  MG Road, Near DV manor,<br />
+                  Vijayawada - 520010
+                </span>
               </div>
             </div>
           </motion.div>
 
+          {/* Quick Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-black">Company</h4>
-            <ul className="space-y-4">
+            <h4 className="text-sm font-semibold uppercase tracking-wide mb-6 text-primary-foreground/70">Company info</h4>
+            <ul className="grid grid-cols-1 gap-5">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm text-gray-500 hover:text-[#008bf8] transition-colors"
+                    className="group flex items-center text-primary-foreground/90 hover:text-primary-foreground transition-colors duration-300"
                   >
-                    {link.name}
+                    <span className="w-0 group-hover:w-2 h-px bg-primary-foreground mr-0 group-hover:mr-3 transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                    <span className="text-sm font-medium">{link.name}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </motion.div>
 
+          {/* Programs */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-black">Our Programs</h4>
-            <ul className="space-y-4">
+            <h4 className="text-sm font-semibold uppercase tracking-wide mb-6 text-primary-foreground/70">Popular Courses</h4>
+            <ul className="grid grid-cols-1 gap-5">
               {courses.map((course) => (
                 <li key={course.name}>
                   <Link
                     to={course.href}
-                    className="text-sm text-gray-500 hover:text-[#008bf8] transition-colors"
+                    className="group flex items-center text-primary-foreground/90 hover:text-primary-foreground transition-colors duration-300"
                   >
-                    {course.name}
+                    <span className="w-0 group-hover:w-2 h-px bg-primary-foreground mr-0 group-hover:mr-3 transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                    <span className="text-sm font-medium">{course.name}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </motion.div>
 
+          {/* Join Us */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h4 className="text-sm font-bold uppercase tracking-widest mb-6 text-black">Follow Us</h4>
-            <div className="flex gap-3 mb-8">
+            <h4 className="text-sm font-semibold uppercase tracking-wide mb-6 text-primary-foreground/70">Follow Our Journey</h4>
+            <div className="flex gap-4 mb-12">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ y: -3 }}
-                  className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[#008bf8] hover:text-white transition-all shadow-sm"
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-300 border border-primary-foreground/20 shadow-lg shadow-black/10"
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon className="w-5 h-5 transition-transform group-hover:rotate-12" />
                 </motion.a>
               ))}
             </div>
 
-            <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-              <p className="text-xs font-bold text-black uppercase tracking-wider mb-3">Newsletter</p>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Enter email"
-                  className="flex-1 px-4 py-2 text-xs rounded-xl bg-white border border-gray-200 focus:outline-none focus:border-[#008bf8] text-black"
-                />
-                <button className="px-4 py-2 bg-black text-white rounded-xl hover:bg-[#008bf8] transition-colors text-xs font-bold">
-                  Join
-                </button>
+            <div className="relative group p-1 rounded-2xl bg-primary-foreground/10 border border-primary-foreground/20 transition-all duration-500">
+              <div className="bg-primary-foreground/5 backdrop-blur-xl p-6 rounded-xl">
+                <p className="text-xs font-bold text-primary-foreground/60 uppercase tracking-widest mb-3">Newsletter</p>
+                <h5 className="text-lg font-bold text-primary-foreground mb-4">Stay ahead of the curve.</h5>
+                <div className="relative">
+                  <input
+                    type="email"
+                    placeholder="Enter email address"
+                    className="w-full px-4 py-3 text-sm rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 focus:outline-none focus:border-primary-foreground/50 transition-all text-primary-foreground placeholder:text-primary-foreground/50 mb-3"
+                  />
+                  <button className="btn-primary w-full">
+                    Join Community
+                  </button>
+                </div>
               </div>
             </div>
           </motion.div>
         </div>
 
+        {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="border-t border-gray-50 mt-16 pt-10"
+          transition={{ duration: 1, delay: 0.5 }}
+          className="border-t border-primary-foreground/10 mt-12 sm:mt-16 pt-6 sm:pt-8"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-gray-400">
-            <p>Copyright © 2025 AOTMS. All Rights Reserved.</p>
-
-            <div className="flex gap-8">
-              <Link to="/privacy-policy" className="hover:text-black transition-colors">Privacy Policy</Link>
-              <a href="https://aotms.in/" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">Developed By: AOTMS</a>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center">
+            <p className="text-xs font-medium text-primary-foreground/70">
+              © {new Date().getFullYear()} AOTMS. Built with ❤️ for Future Tech Leaders.
+            </p>
+            <div className="flex gap-4">
+              <Link to="/privacy-policy" className="text-xs font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="text-xs font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors">Terms of Service</Link>
             </div>
           </div>
         </motion.div>
