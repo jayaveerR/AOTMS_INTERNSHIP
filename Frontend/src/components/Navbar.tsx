@@ -32,7 +32,7 @@ const courses = [
   { name: "Java Full Stack", href: "/course/java-full-stack", icon: FaJava },
   { name: "MERN Stack", href: "/course/mern-stack", icon: FaReact },
   { name: "Python Full Stack", href: "/course/python-full-stack", icon: FaPython },
-  { name: "Quantum Computing", href: "/course/quantom-computing", icon: FaBrain },
+  { name: "Quantum Computing", href: "/course/quantum-computing", icon: FaBrain },
   { name: "UI/UX Design", href: "/course/ui-ux-design", icon: SiMui },
   { name: "QA Automation", href: "/course/qa-automation", icon: FaCode },
 ];
@@ -171,7 +171,7 @@ export const Header = () => {
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-md' : ''}`}
+        className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-300 ${isScrolled ? 'shadow-md' : ''}`}
       >
         {/* Top Bar (Hidden on Scroll) */}
         <AnimatePresence>
@@ -358,13 +358,13 @@ export const Header = () => {
           <>
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
+              className="fixed inset-0 z-[1000] bg-black/60 backdrop-blur-sm"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
               initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-[320px] bg-background z-[61] shadow-2xl flex flex-col"
+              className="fixed top-0 right-0 h-full w-[85%] max-w-[320px] bg-background z-[1001] shadow-2xl flex flex-col"
             >
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-border/50">

@@ -219,7 +219,7 @@ export default function CourseDetail() {
                             {/* Content */}
                             <div className="relative z-10">
                                 <div className="inline-block px-4 py-1.5 rounded-full bg-orange-500 text-white text-[11px] font-black uppercase tracking-[0.2em] mb-6 shadow-lg shadow-orange-500/30">
-                                    Kickstart Your Career
+                                    Kickstart Your Developer Journey
                                 </div>
                                 <h1 className="text-4xl md:text-6xl font-display font-black text-white mb-6 leading-[1.1] uppercase">
                                     Become A <br />

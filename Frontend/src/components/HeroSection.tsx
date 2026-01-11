@@ -30,7 +30,7 @@ export const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[100dvh] pt-24 md:pt-32 flex items-center overflow-hidden bg-background">
+    <section className="relative min-h-[100dvh] pt-36 md:pt-48 pb-12 md:pb-20 flex items-center overflow-hidden bg-background">
       {/* Modern Background Elements - Subtle & Professional */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Top Right Gradient Orb - Softened */}
@@ -44,7 +44,7 @@ export const HeroSection = () => {
       </div>
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center w-full">
 
           {/* Left Column: Content */}
           <div className="flex flex-col gap-6 max-w-2xl lg:max-w-3xl">

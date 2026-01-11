@@ -5,7 +5,7 @@ import img from "@/assets/Workshop-1.jpg";
 export const CourseRequestSection = () => {
     return (
         <section className="py-12 md:py-20 bg-background relative overflow-hidden">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="bg-primary rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row relative">
 
                     {/* Decorative Elements */}
