@@ -7,7 +7,90 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
 const faqs = [
-    // ... existing code ...
+    {
+        category: "Admissions & Enrollment",
+        items: [
+            {
+                question: "What is the eligibility criteria for joining AOTMS courses?",
+                answer: "Our courses are open to students, graduates, and working professionals from any background. While a basic understanding of computers is helpful, we start all our training from the fundamentals to ensure everyone can follow along."
+            },
+            {
+                question: "Do I need a technical background to join?",
+                answer: "No! We specialize in training students from non-IT backgrounds (B.Com, B.Sc, BBA, etc.) and transforming them into IT professionals. Our curriculum is designed to bridge the gap between non-tech education and IT industry requirements."
+            },
+            {
+                question: "How do I register for a course?",
+                answer: "You can register by visiting our campus in Vijayawada, calling our admissions team, or filling out the enrollment form on our website. Once registered, you will be guided through the batch selection process."
+            },
+            {
+                question: "Can I join if I have a career gap?",
+                answer: "Yes! A career gap is not a barrier at AOTMS. We focus on your current skills and project work. Many of our students have successfully restarted their careers after breaks of 2-5 years."
+            },
+            {
+                question: "Do I need to bring my own laptop?",
+                answer: "While we have computer labs available for practice, we highly recommend bringing your own laptop. This allows you to practice coding at home and build your own development environment, which is crucial for your career."
+            }
+        ]
+    },
+    {
+        category: "Training & Curriculum",
+        items: [
+            {
+                question: "Are the classes online or offline?",
+                answer: "We offer both! You can choose our immersive offline classroom training at our Vijayawada campus for a hands-on experience, or opt for our live online sessions if you prefer learning from home."
+            },
+            {
+                question: "Do you provide hands-on project experience?",
+                answer: "Absolutely. We believe in 'Learning by Doing'. All our courses include real-time industry projects, mini-projects, and case studies to ensure you gain practical experience that employers value."
+            },
+            {
+                question: "What if I miss a class?",
+                answer: "Don't worry! We provide recorded sessions of all our classes. You can access these recordings anytime through our Learning Management System (LMS) to catch up or revise topics."
+            },
+            {
+                question: "Do you have weekend batches for working professionals?",
+                answer: "Yes, we understand the schedule of working professionals. We offer dedicated weekend batches that cover the same comprehensive curriculum."
+            },
+            {
+                question: "Who are the trainers?",
+                answer: "Our trainers are industry experts with 10+ years of real-world experience in top MNCs. They don't just teach theory; they share practical insights and best practices used in the industry."
+            },
+            {
+                question: "Do you provide internship certificates?",
+                answer: "Yes, upon successful completion of the training and project work, you will receive an internship experience certificate. This is highly valuable as it shows recruiters you have practical work experience."
+            }
+        ]
+    },
+    {
+        category: "Placements & Career Support",
+        items: [
+            {
+                question: "Do you offer placement assistance?",
+                answer: "Yes, we provide 100% placement assistance. Our dedicated placement cell helps you with resume building, mock interviews, soft skills training, and scheduling interviews with our hiring partners until you get placed."
+            },
+            {
+                question: "Which companies hire from AOTMS?",
+                answer: "Our students have been placed in top MNCs and startups including TCS, Infosys, Wipro, Capgemini, HCL, Accenture, and many prominent product-based companies."
+            },
+            {
+                question: "What is the average salary package?",
+                answer: "The starting salary for our freshers typically ranges from 3.5 LPA to 6 LPA, while experienced professionals often see hikes of 50-100% on their current packages. We have students who have cracked offers up to 12 LPA."
+            }
+        ]
+    },
+    {
+        category: "Certification & Fees",
+        items: [
+            {
+                question: "Will I get a certificate upon completion?",
+                answer: "Yes, you will receive a course completion certificate from AOTMS, which is recognized by our hiring partners. We also guide you in clearing global certifications (like AWS, Java, etc.) to boost your profile."
+            },
+            {
+                question: "Do you offer installment options for fees?",
+                answer: "Yes, we believe financial constraints shouldn't stop you from learning. We offer flexible EMI options and installment plans. Please contact our counselors for detailed fee structures."
+            }
+        ]
+    }
 ];
 
 const FAQPage = () => {
