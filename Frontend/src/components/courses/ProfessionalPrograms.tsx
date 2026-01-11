@@ -22,7 +22,7 @@ export const ProfessionalPrograms = () => {
         <section id="courses" className="py-8 md:py-12 bg-white overflow-hidden">
             <div className="container mx-auto px-6">
                 {/* Header Section - Centered Hero Style */}
-                <div className="flex flex-col items-center text-center mb-10">
+                <div className="flex flex-col items-center text-center mb-8">
                     <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100 border-none px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-6">
                         <Sparkles className="w-3.5 h-3.5 mr-2 fill-current" />
                         World Class Education
@@ -35,7 +35,7 @@ export const ProfessionalPrograms = () => {
                         Designed by experts, delivered by professionals.
                     </p>
 
-                    <div className="flex items-center gap-4 mt-12">
+                    <div className="flex items-center gap-4 mt-6">
                         <button
                             onClick={scrollPrev}
                             className="w-12 h-12 rounded-full bg-white border border-slate-100 shadow-sm flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group"
@@ -55,7 +55,7 @@ export const ProfessionalPrograms = () => {
 
                 {/* Animated Horizontal Carousel (3 Cards) */}
                 <div className="embla overflow-hidden" ref={emblaRef}>
-                    <div className="embla__container flex py-10">
+                    <div className="embla__container flex py-6">
                         {coursesData.map((course) => (
                             <div
                                 key={course.id}

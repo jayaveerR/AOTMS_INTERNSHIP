@@ -20,8 +20,9 @@ export const PlacementsSection = () => {
   const [openId, setOpenId] = useState<string | null>("01");
 
   return (
-    <section id="placements" className="py-12 sm:py-16 md:py-24 bg-secondary relative overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section id="placements" className="py-12 md:py-20 bg-secondary relative overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:14px_24px]" />
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-start">
 
           <div className="relative space-y-8">

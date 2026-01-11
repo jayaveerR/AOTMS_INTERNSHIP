@@ -48,17 +48,17 @@ export const CourseCard = ({ course }: CourseCardProps) => {
         <div
             className={cn(
                 "group relative flex flex-col bg-white overflow-hidden transition-all duration-300",
-                "w-full max-w-[340px] mx-auto min-h-[460px] md:min-h-[480px]", // Fluid width on mobile, max-width for sanity
-                "rounded-[18px] md:rounded-[22px]", // Border Radius
-                "hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50", // Hover Interaction
-                isClicked && "scale-[0.98]" // Click Interaction
+                "w-full max-w-[340px] mx-auto min-h-[400px] md:min-h-[440px]", // Compacted Height
+                "rounded-[18px] md:rounded-[22px]",
+                "hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50",
+                isClicked && "scale-[0.98]"
             )}
             onMouseDown={() => setIsClicked(true)}
             onMouseUp={() => setIsClicked(false)}
             onMouseLeave={() => setIsClicked(false)}
         >
             {/* 1️⃣ TOP BANNER (IMAGE ZONE) */}
-            <div className="relative h-[160px] md:h-[180px] w-full overflow-hidden shrink-0">
+            <div className="relative h-[140px] md:h-[160px] w-full overflow-hidden shrink-0"> {/* Reduced Height */}
                 <img
                     src={course.image}
                     alt={course.title}
@@ -67,7 +67,7 @@ export const CourseCard = ({ course }: CourseCardProps) => {
             </div>
 
             {/* 2️⃣ COURSE LOGO / ICON */}
-            <div className="absolute top-[135px] md:top-[155px] left-6 z-20">
+            <div className="absolute top-[115px] md:top-[135px] left-6 z-20"> {/* Adjusted Position */}
                 <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-full shadow-lg flex items-center justify-center border border-slate-50">
                     <div
                         className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center"
@@ -79,8 +79,8 @@ export const CourseCard = ({ course }: CourseCardProps) => {
             </div>
 
             {/* 3️⃣ MAIN CONTENT AREA */}
-            <div className="flex-1 p-5 md:p-6 pt-10 md:pt-12 flex flex-col justify-between">
-                <div className="mb-4">
+            <div className="flex-1 p-4 md:p-6 pt-10 md:pt-12 flex flex-col justify-between">
+                <div className="mb-3">
                     <Link to={`/course/${course.slug}`}>
                         <h3 className="text-lg md:text-xl font-bold text-black leading-tight mb-1 group-hover:text-blue-600 transition-colors">
                             {course.title}
@@ -95,7 +95,7 @@ export const CourseCard = ({ course }: CourseCardProps) => {
                 </div>
 
                 {/* 4️⃣ META INFO ROW & CTA */}
-                <div className="flex flex-col gap-5 mt-auto">
+                <div className="flex flex-col gap-4 mt-auto">
                     <div className="flex items-center gap-3 text-[11px] md:text-xs text-slate-400 font-bold uppercase tracking-widest">
                         <span className="flex items-center gap-1.5">{course.duration}</span>
                         <span className="w-1 h-1 bg-slate-200 rounded-full" />
@@ -118,7 +118,7 @@ export const CourseCard = ({ course }: CourseCardProps) => {
                             <Link
                                 to={`/course/${course.slug}`}
                                 className={cn(
-                                    "flex items-center justify-center h-12 md:h-13 rounded-xl font-bold text-xs md:text-sm transition-all duration-200",
+                                    "flex items-center justify-center h-10 md:h-11 rounded-xl font-bold text-xs md:text-sm transition-all duration-200", // Compact Button
                                     "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 active:scale-[0.97]"
                                 )}
                             >
@@ -127,11 +127,11 @@ export const CourseCard = ({ course }: CourseCardProps) => {
                             <button
                                 onClick={handleAddToCart}
                                 className={cn(
-                                    "flex items-center justify-center h-12 md:h-13 rounded-xl font-bold text-xs md:text-sm transition-all duration-200",
+                                    "flex items-center justify-center h-10 md:h-11 rounded-xl font-bold text-xs md:text-sm transition-all duration-200", // Compact Button
                                     "bg-orange-500 text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 active:scale-[0.97]"
                                 )}
                             >
-                                Add to Cart
+                                Start Learning
                             </button>
                         </div>
                     </div>

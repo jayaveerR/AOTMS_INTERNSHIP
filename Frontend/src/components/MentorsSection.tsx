@@ -1,6 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { TestimonialCarousel } from "./profile-card-testimonial-carousel";
 
+import { Link } from "react-router-dom";
+
 export const MentorsSection = () => {
   return (
     <section className="py-8 md:py-12 bg-background relative overflow-hidden">
@@ -22,9 +24,9 @@ export const MentorsSection = () => {
         <TestimonialCarousel />
 
         <div className="mt-12 md:mt-16 text-center">
-          <button className="btn-secondary group flex items-center gap-2 mx-auto">
+          <Link to="/#courses" className="btn-secondary group inline-flex items-center gap-2 mx-auto bg-accent text-white px-6 py-3 rounded-md font-bold hover:bg-accent/90 transition-colors shadow-lg shadow-accent/20">
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /> Explore Our Courses
-          </button>
+          </Link>
         </div>
       </div>
     </section>

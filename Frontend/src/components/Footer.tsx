@@ -1,25 +1,29 @@
-import { motion } from "framer-motion";
 import { Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { coursesData } from "@/data/courses";
-import logo from "@/assets/logo.png"; // Importing the logo image
+import logo from "@/assets/logo.png";
 
 const quickLinks = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about-us" },
-  { name: "Resources", href: "/what-we-do#resources" }, // Link to section on What We Do page
-  // Removed "Careers" and "Instructor" as they don't have dedicated pages yet
+  { name: "Resources", href: "/what-we-do#resources" },
   { name: "Contact Us", href: "/contact" },
+  { name: "Blog", href: "/blog" },
+  { name: "FAQ", href: "/FAQ" },
+  { name: "Terms & Conditions", href: "/terms" },
 ];
 
 const footerCourses = [
-  "quantom-computing",
-  "devops-aws-azure",
-  "embedded-systems",
-  "data-science",
-  "cloud-computing",
-  "data-analytics",
-  "python-full-stack"
+  "Quantum-Computing",
+  "Cybersecurity",
+  "AI with Machine Learning",
+  "DevOps-AWS-Azure",
+  "Embedded-Systems",
+  "Data-Science",
+  "Cloud-Computing",
+  "Python-full-stack",
+  "Java-full-stack",
+  "MERN-full-stack"
 ];
 
 const courses = footerCourses.map(slug => {
@@ -38,143 +42,142 @@ const socialLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="relative bg-primary text-primary-foreground pt-12 sm:pt-16 md:pt-24 pb-48 sm:pb-12 overflow-hidden border-t border-primary-foreground/10">
-      {/* Dynamic Background Elements */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary-foreground/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-black/10 rounded-full blur-[100px] pointer-events-none" />
+    <footer className="bg-[#0066CC] pt-10 pb-6 md:pt-14 md:pb-8 border-t border-white/20 font-sans text-white relative z-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-2">
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 lg:gap-20">
-          {/* Brand & Contact Section - Spans full width on mobile */}
-          <div className="col-span-2 md:col-span-1 lg:col-span-1">
-            <Link to="/" className="inline-block group mb-6">
-              <img src={logo} alt="AOTMS Logo" className="h-10 sm:h-12 w-auto filter invert" />
-            </Link>
+          {/* Column 1: Brand & Contact (Span 3) */}
+          <div className="md:col-span-2 lg:col-span-3 space-y-4">
+            <div className="flex items-center justify-between lg:block">
+              <Link to="/" className="inline-block bg-white p-3 rounded-2xl shadow-md transform transition-transform hover:scale-105">
+                <img src={logo} alt="AOTMS Logo" className="h-10 md:h-14 w-auto" />
+              </Link>
+              {/* Mobile Socials */}
+              <div className="flex lg:hidden gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-primary-foreground/10 flex items-center justify-center text-primary-foreground/80 hover:bg-accent hover:text-white transition-colors"
+                  >
+                    <social.icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
 
-            <p className="text-primary-foreground/80 text-sm leading-relaxed mb-8 max-w-xs font-medium">
+            <p className="text-xs md:text-sm text-primary-foreground/70 leading-relaxed max-w-sm">
               Transforming careers through industry-leading tech education. Master the future with Academy of Tech Masters.
             </p>
 
-            <div className="space-y-5">
-              <div className="flex flex-col gap-2">
-                <a href="tel:+918019942233" className="group flex items-center gap-3 text-primary-foreground hover:text-primary-foreground/70 transition-colors duration-300">
-                  <div className="w-8 h-8 rounded-full bg-primary-foreground/10 flex items-center justify-center border border-primary-foreground/20 group-hover:bg-primary-foreground/20 transition-colors">
-                    <Phone className="w-4 h-4" />
-                  </div>
-                  <span className="text-sm font-semibold">+91 80199 42233</span>
-                </a>
-                <div className="pl-11 space-y-1">
-                  <a href="tel:+918019952233" className="block text-xs text-primary-foreground/70 hover:text-primary-foreground transition-colors">+91 80199 52233</a>
-                  <a href="tel:+918019962233" className="block text-xs text-primary-foreground/70 hover:text-primary-foreground transition-colors">+91 80199 62233</a>
+            <div className="space-y-2 pt-1">
+              {/* Contact Items */}
+              <div className="flex flex-col gap-2 text-xs md:text-sm">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                  <span className="text-primary-foreground/80">Vijayawada - 520010, AP, India.</span>
                 </div>
-              </div>
-
-              <a href="mailto:Info@aotms.com" className="group flex items-center gap-3 text-primary-foreground hover:text-primary-foreground/70 transition-colors duration-300">
-                <div className="w-8 h-8 rounded-full bg-primary-foreground/10 flex items-center justify-center border border-primary-foreground/20 group-hover:bg-primary-foreground/20 transition-colors">
-                  <Mail className="w-4 h-4" />
+                <div className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-accent shrink-0" />
+                  <a href="tel:+918019942233" className="text-primary-foreground/80 hover:text-accent transition-colors">+91 80199 42233</a>
                 </div>
-                <span className="text-sm font-semibold">Info@aotms.com</span>
-              </a>
-
-              <div className="flex items-start gap-3 text-primary-foreground group cursor-default">
-                <div className="w-8 h-8 rounded-full bg-primary-foreground/10 flex items-center justify-center border border-primary-foreground/20 shrink-0">
-                  <MapPin className="w-4 h-4" />
+                <div className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-accent shrink-0" />
+                  <a href="mailto:Info@aotms.com" className="text-primary-foreground/80 hover:text-accent transition-colors">Info@aotms.com</a>
                 </div>
-                <span className="text-sm leading-6 font-medium text-primary-foreground/80">
-                  Pothuri Towers, 2nd Floor,<br />
-                  MG Road, Near DV manor,<br />
-                  Vijayawada - 520010
-                </span>
               </div>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-xs sm:text-sm font-semibold uppercase tracking-wide mb-4 text-primary-foreground/70">Company info</h4>
-            <ul className="grid grid-cols-1 gap-3">
+          {/* Column 2: Company (Span 2) */}
+          <div className="lg:col-span-2">
+            <h4 className="text-xs md:text-sm font-bold uppercase tracking-wider text-white mb-3">Company</h4>
+            <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="group flex items-center text-primary-foreground/90 hover:text-primary-foreground transition-colors duration-300"
+                    className="text-xs md:text-sm text-primary-foreground/70 hover:text-accent transition-colors block"
                   >
-                    <span className="w-0 group-hover:w-2 h-px bg-primary-foreground mr-0 group-hover:mr-3 transition-all duration-300 opacity-0 group-hover:opacity-100" />
-                    <span className="text-xs sm:text-sm font-medium">{link.name}</span>
+                    {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Programs */}
-          <div>
-            <h4 className="text-xs sm:text-sm font-semibold uppercase tracking-wide mb-4 text-primary-foreground/70">Popular Courses</h4>
-            <ul className="grid grid-cols-1 gap-3">
+          {/* Column 3: Courses (Span 4) */}
+          <div className="lg:col-span-4">
+            <h4 className="text-xs md:text-sm font-bold uppercase tracking-wider text-white mb-3">Trending Courses</h4>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
               {courses.map((course) => (
                 <li key={course.name}>
                   <Link
                     to={course.href}
-                    className="group flex items-center text-primary-foreground/90 hover:text-primary-foreground transition-colors duration-300"
+                    className="text-xs md:text-sm text-primary-foreground/70 hover:text-accent transition-colors truncate block"
                   >
-                    <span className="w-0 group-hover:w-2 h-px bg-primary-foreground mr-0 group-hover:mr-3 transition-all duration-300 opacity-0 group-hover:opacity-100" />
-                    <span className="text-xs sm:text-sm font-medium">{course.name}</span>
+                    {course.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Join Us - Spans full width on mobile */}
-          <div className="col-span-2 md:col-span-1 lg:col-span-1">
-            <h4 className="text-sm font-semibold uppercase tracking-wide mb-6 text-primary-foreground/70">Follow Our Journey</h4>
-            <div className="flex gap-4 mb-12">
+          {/* Column 4: Connect (Span 3 - The Gap Filler) */}
+          <div className="hidden lg:block lg:col-span-3">
+            <h4 className="text-xs md:text-sm font-bold uppercase tracking-wider text-white mb-3">Connect with us</h4>
+            <div className="flex flex-col gap-3">
               {socialLinks.map((social) => (
-                <motion.a
+                <a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-200"
+                  className="flex items-center gap-3 pl-3 pr-4 py-2.5 rounded-xl bg-primary-foreground/5 border border-primary-foreground/10 hover:bg-accent hover:border-accent hover:text-white text-primary-foreground/80 transition-all duration-300 group w-full max-w-[200px]"
                 >
-                  <social.icon className="w-5 h-5 transition-transform group-hover:rotate-12" />
-                </motion.a>
+                  <div className="w-8 h-8 rounded-lg bg-primary-foreground/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <social.icon className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-bold">{social.label}</span>
+                </a>
               ))}
-            </div>
-
-            <div className="relative group p-1 rounded-2xl bg-primary-foreground/10 border border-primary-foreground/20 transition-all duration-500">
-              <div className="bg-primary-foreground/5 backdrop-blur-xl p-6 rounded-xl">
-                <p className="text-xs font-bold text-primary-foreground/60 uppercase tracking-widest mb-3">Newsletter</p>
-                <h5 className="text-lg font-bold text-primary-foreground mb-4">Stay ahead of the curve.</h5>
-                <div className="relative">
-                  <input
-                    type="email"
-                    placeholder="Enter email address"
-                    className="w-full px-4 py-3 text-sm rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 focus:outline-none focus:border-primary-foreground/50 transition-all text-primary-foreground placeholder:text-primary-foreground/50 mb-3"
-                  />
-                  <button className="btn-primary w-full">
-                    Join Community
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
 
+        {/* Newsletter Section - Restored */}
+        <div className="bg-primary-foreground/5 rounded-2xl p-6 md:p-8 mb-6 flex flex-col lg:flex-row items-center justify-between gap-6 relative overflow-hidden group border border-primary-foreground/10">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2 group-hover:bg-accent/10 transition-colors duration-500" />
+
+          <div className="text-center lg:text-left max-w-lg">
+            <h4 className="text-lg md:text-xl font-bold text-white mb-2">Subscribe to our Newsletter</h4>
+            <p className="text-sm text-primary-foreground/60 leading-relaxed">
+              Get the latest insights, tutorials, and trends in tech delivered directly to your inbox.
+            </p>
+          </div>
+
+          <form className="flex w-full max-w-md gap-3 relative z-10" onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="email"
+              placeholder="Enter your work email"
+              className="bg-primary text-white border border-primary-foreground/20 rounded-lg px-4 py-3 w-full focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder:text-primary-foreground/30 text-sm"
+              required
+            />
+            <button className="bg-accent hover:bg-accent/90 text-white font-bold px-6 py-3 rounded-lg transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-accent/20 text-sm sm:text-base whitespace-nowrap">
+              Subscribe
+            </button>
+          </form>
+        </div>
+
         {/* Bottom Bar */}
-        <div>
-          <div className="border-t border-primary-foreground/10 mt-12 sm:mt-16 pt-6 sm:pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center">
-              <p className="text-xs font-medium text-primary-foreground/70">
-                © {new Date().getFullYear()} AOTMS. Built with ❤️ for Future Tech Leaders.
-              </p>
-              <div className="flex gap-4">
-                <Link to="/privacy-policy" className="text-xs font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors">Privacy Policy</Link>
-                <Link to="/terms" className="text-xs font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors">Terms of Service</Link>
-              </div>
-            </div>
+        <div className="pt-6 border-t border-primary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-3 text-[10px] md:text-xs text-primary-foreground/50">
+          <p>© {new Date().getFullYear()} AOTMS. All rights reserved. Engineered by Team AOTMS</p>
+          <div className="flex gap-4">
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
           </div>
         </div>
       </div>

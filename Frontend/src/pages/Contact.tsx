@@ -8,20 +8,7 @@ import { Phone, Mail, MapPin, Youtube, Instagram, Linkedin } from 'lucide-react'
 import axios from 'axios';
 import { toast } from 'sonner';
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-
-// Fix for default marker icon in React-Leaflet
-let DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41]
-});
-L.Marker.prototype.options.icon = DefaultIcon;
+// Google Maps Embed used instead of Leaflet
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -208,28 +195,16 @@ const Contact = () => {
 
           {/* Full Width Map Section */}
           <div className="w-full h-[450px] rounded-[32px] overflow-hidden shadow-xl border border-slate-200 relative z-0">
-            <MapContainer center={[16.5062, 80.6480]} zoom={15} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <Marker
-                position={[16.5062, 80.6480]}
-                eventHandlers={{
-                  click: () => {
-                    window.open("https://www.google.com/maps/search/?api=1&query=Pothuri+Towers,+MG+Road,+Vijayawada", "_blank");
-                  }
-                }}
-              >
-                <Popup>
-                  <div className="p-1 text-center cursor-pointer">
-                    <strong className="text-blue-600 text-sm">Academy of Tech Masters</strong><br />
-                    <span className="text-xs text-slate-600">Pothuri Towers, MG Road</span><br />
-                    <span className="text-[10px] text-blue-500 font-medium">(Click to view on Google Maps)</span>
-                  </div>
-                </Popup>
-              </Marker>
-            </MapContainer>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.5236791966513!2d80.64593811057928!3d16.49963922770637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fb43b8f6af1d%3A0x18151e18505cbaf8!2sAcademy%20Of%20Tech%20Masters!5e0!3m2!1sen!2sin!4v1768037573566!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Academy of Tech Masters Location"
+            ></iframe>
           </div>
         </div>
       </main>

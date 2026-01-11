@@ -22,6 +22,7 @@ import Dashboard from "./pages/Dashboard";           // New
 
 import ResetPassword from "./pages/ResetPassword"; // New
 import Winners from "./pages/HackathonWinnersPage";    // New
+import FAQPage from "./pages/FAQPage";               // New
 import Chatbot from "./components/Chatbot";
 
 const queryClient = new QueryClient();
@@ -57,6 +58,8 @@ const CustomCursor = () => {
   );
 };
 
+import ScrollToTop from "./components/ScrollToTop";
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -65,6 +68,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
 
@@ -75,6 +79,7 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />               {/* New */}
           <Route path="/placements" element={<Placements />} />   {/* New */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/faq" element={<FAQPage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/hackathon" element={<Hackathon />} />     {/* New */}
           <Route path="/workshop" element={<Workshop />} />     {/* New */}

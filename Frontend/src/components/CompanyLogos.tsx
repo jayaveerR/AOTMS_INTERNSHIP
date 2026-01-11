@@ -51,7 +51,7 @@ const CompanyLogos = ({
 }: CompanyLogosProps) => {
     return (
         <section className={`py-6 bg-slate-50 border-b border-slate-100 ${className}`}>
-            <div className="relative mx-auto flex items-center justify-center">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative flex items-center justify-center">
                 <Carousel
                     opts={{ loop: true, align: "start" }}
                     plugins={[AutoScroll({ playOnInit: true, speed: 1.0, stopOnInteraction: false, stopOnMouseEnter: true })]}

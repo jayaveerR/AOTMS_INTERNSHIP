@@ -120,7 +120,31 @@ const getCourseOutcomes = (category: string) => {
     return outcomes[category] || defaultOutcomes;
 };
 
-
+const getCourseTheme = (category: string) => {
+    if (category.includes("Data") || category.includes("AI") || category.includes("Machine")) {
+        return {
+            color: "#3b82f6", // Blue-500
+            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop", // Data Visualization
+        };
+    }
+    if (category.includes("Cloud") || category.includes("DevOps")) {
+        return {
+            color: "#0ea5e9", // Sky-500
+            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop", // Global Network
+        };
+    }
+    if (category.includes("Security") || category.includes("Cyber")) {
+        return {
+            color: "#10b981", // Emerald-500
+            image: "https://images.unsplash.com/photo-1563206767-5b1d97289374?q=80&w=2541&auto=format&fit=crop", // Matrix/Code
+        };
+    }
+    // Default Web/Full Stack (AOTMS Blue)
+    return {
+        color: "#FF6B35",
+        image: "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=2706&auto=format&fit=crop", // Clean Coding Workspace
+    };
+};
 
 export default function CourseDetail() {
     const { slug } = useParams();
@@ -168,164 +192,147 @@ export default function CourseDetail() {
             <Header />
 
             {/* Hero Section */}
-            <section className="relative pt-32 pb-16 md:pt-44 md:pb-28 bg-white overflow-hidden">
-                {/* Subtle Decorative Background */}
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute top-0 right-0 w-full h-full opacity-[0.03] bg-[radial-gradient(circle_at_70%_30%,_rgba(30,58,138,0.5)_0%,_transparent_70%)]" />
-                    <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/5 rounded-full blur-[120px]" />
-                    <div className="absolute top-1/2 -left-24 w-72 h-72 bg-orange-600/5 rounded-full blur-[100px]" />
+            <section className="relative pt-24 pb-8 md:pt-28 md:pb-12 bg-[#0B1221] overflow-hidden flex items-center min-h-[calc(100vh-80px)]">
+                {/* Background Textures */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute inset-0 bg-[#0B1221]" />
+                    <div className="absolute -top-[500px] -right-[500px] w-[1000px] h-[1000px] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen" />
                 </div>
 
-                <div className="container mx-auto px-6 relative z-10">
-                    {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-2 text-slate-400 text-[11px] md:text-xs font-bold uppercase tracking-widest mb-4 md:mb-6">
-                        <Link to="/" className="hover:text-blue-600 transition-colors">Home</Link>
-                        <ChevronLeft className="w-3 h-3 rotate-180" />
-                        <Link to="/#courses" className="hover:text-blue-600 transition-colors">Courses</Link>
-                        <ArrowRight className="w-3 h-3 text-slate-300 mx-1" />
-                        <span className="text-slate-600">{course.title}</span>
-                    </nav>
+                <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6 relative z-10">
+                    {/* REFERENCE IMAGE STYLE - SPLIT HERO CARD - COMPACT FIT */}
+                    <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl shadow-blue-900/40 flex flex-col md:flex-row min-h-[500px] lg:min-h-[560px]">
 
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        {/* Left Side: Course Info */}
-                        <div className="text-slate-900">
-                            <div className="flex flex-wrap items-center gap-3 mb-6">
-                                <Badge
-                                    className="bg-opacity-10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest border-none"
-                                    style={{ backgroundColor: `${course.themeColor}15`, color: course.themeColor }}
-                                >
-                                    {course.category}
-                                </Badge>
-                                {course.rating >= 4.5 && (
-                                    <Badge className="bg-orange-50 text-orange-600 border-orange-100 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">
-                                        Bestseller
-                                    </Badge>
-                                )}
+                        {/* LEFT SIDE: Visual Content */}
+                        <div className="relative w-full md:w-1/2 p-8 md:p-10 flex flex-col justify-center overflow-hidden">
+                            {/* Background Image */}
+                            <div className="absolute inset-0">
+                                <img
+                                    src={getCourseTheme(course.category).image}
+                                    alt="Course BG"
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-blue-950/80 mix-blend-multiply" />
+                                <div className="absolute inset-0 bg-gradient-to-tr from-[#003366]/90 to-transparent" />
                             </div>
 
-                            <h1 className="text-4xl md:text-6xl font-display font-bold text-slate-900 mb-6 leading-tight tracking-tight">
-                                {course.title} Course in <span style={{ color: course.themeColor }} className="underline decoration-blue-100 underline-offset-8">Vijayawada</span>
-                            </h1>
+                            {/* Content */}
+                            <div className="relative z-10">
+                                <div className="inline-block px-4 py-1.5 rounded-full bg-orange-500 text-white text-[11px] font-black uppercase tracking-[0.2em] mb-6 shadow-lg shadow-orange-500/30">
+                                    Kickstart Your Career
+                                </div>
+                                <h1 className="text-4xl md:text-6xl font-display font-black text-white mb-6 leading-[1.1] uppercase">
+                                    Become A <br />
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">{course.title} PRO</span>
+                                </h1>
+                                <p className="text-blue-100 text-lg font-medium max-w-md leading-relaxed mb-8">
+                                    Dominate the digital world with our comprehensive {course.category} training program.
+                                </p>
 
-                            <p className="text-lg md:text-xl text-slate-500 mb-10 max-w-xl leading-relaxed font-medium">
-                                {course.slug === 'quantum-computing' ? (
-                                    "Quantum Computing is an advanced technology that uses the principles of quantum physics to process information. Unlike traditional computers that use bits (0s and 1s), quantum computers use qubits, which can represent both 0 and 1 at the same time allowing them to perform complex calculations much faster."
-                                ) : (
-                                    course.description
-                                )}
-                            </p>
-
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-12">
-                                <div className="space-y-1">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Duration</span>
+                                <div className="flex items-center gap-4">
+                                    <div className="flex -space-x-3">
+                                        {[1, 2, 3, 4].map(i => (
+                                            <div key={i} className="w-10 h-10 rounded-full border-2 border-[#003366] bg-slate-200 relative overflow-hidden">
+                                                <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="User" className="w-full h-full object-cover" />
+                                            </div>
+                                        ))}
                                     </div>
-                                    <div className="text-slate-900 font-bold text-sm md:text-base">150h</div>
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Level</span>
+                                    <div className="text-white text-xs font-bold">
+                                        <span className="text-orange-400 block text-sm">4.9/5.0</span>
+                                        Student Rating
                                     </div>
-                                    <div className="text-slate-900 font-bold text-sm md:text-base">{course.level}</div>
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Rating</span>
-                                    </div>
-                                    <div className="text-slate-900 font-bold text-sm md:text-base">4.0 / 5.0</div>
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Language</span>
-                                    </div>
-                                    <div className="text-slate-900 font-bold text-sm md:text-base">English / Telugu</div>
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col gap-8">
-                                <div className="flex items-baseline gap-4">
-                                    <span className="text-3xl md:text-4xl font-black text-slate-900">₹35,000.00</span>
-                                    <span className="text-lg md:text-xl text-slate-400 line-through font-bold">₹50,000.00</span>
-                                </div>
-
-                                <div className="flex flex-wrap gap-5">
-                                    <Button
-                                        onClick={handleEnroll}
-                                        className="h-14 px-10 text-white rounded-2xl text-lg font-bold shadow-2xl transition-all hover:scale-105 active:scale-95 group/btn border-none"
-                                        style={{ backgroundColor: course.themeColor, boxShadow: `0 20px 40px -10px ${course.themeColor}50` }}
-                                    >
-                                        Enroll Now
-                                        <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover/btn:translate-x-1" />
-                                    </Button>
-                                    <Button variant="outline" className="h-14 px-8 bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100 rounded-2xl text-lg font-bold">
-                                        Download Brochure
-                                    </Button>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Right Side: Form */}
-                        <div className="relative lg:justify-self-end w-full max-w-[500px]">
-                            <motion.div
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                className="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-2xl border border-slate-100 relative z-20"
-                            >
-                                <div className="mb-8">
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-3 tracking-tight">Become {course.title} Developer</h3>
-                                    <p className="text-sm text-slate-500 leading-relaxed font-medium">Talk to Our Team and learn how our training programs in Hyderabad can help you become a {course.title} Developer and get a high-paying job.</p>
+                        {/* RIGHT SIDE: Skewed Form */}
+                        <div className="relative w-full md:w-1/2 bg-[#0066CC] flex flex-col justify-center p-8 md:p-12">
+
+                            {/* The Skewed Divider Effect */}
+                            <div className="hidden md:block absolute top-0 bottom-0 -left-20 w-40 bg-[#0066CC] transform -skew-x-[12deg] z-0 shadow-[-20px_0_40px_rgba(0,0,0,0.2)]" />
+
+                            <div className="relative z-10">
+                                <div className="flex items-center gap-3 mb-8">
+                                    <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-500/20">
+                                        <BookOpen className="w-5 h-5" />
+                                    </div>
+                                    <span className="text-blue-100 font-bold uppercase tracking-wider text-sm">Course Request</span>
                                 </div>
 
-                                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="name" className="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Full Name</Label>
-                                        <Input id="name" placeholder="John Doe" className="h-12 rounded-2xl border-slate-100 bg-slate-50 focus:bg-white transition-all text-sm font-bold placeholder:font-medium" />
+                                <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 leading-tight">
+                                    Find Your Best <br /> Course With Us
+                                </h2>
+                                <p className="text-blue-100 text-lg mb-10 opacity-90 leading-relaxed max-w-md">
+                                    Start your IT Career Today! Enroll Now for a free demo and get expert guidance.
+                                </p>
+
+                                <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleEnroll(); }}>
+                                    <div className="space-y-6">
+                                        <div>
+                                            <input
+                                                type="text"
+                                                placeholder="Your Name"
+                                                className="w-full h-14 rounded-xl bg-blue-800/50 border border-blue-400/30 text-white placeholder:text-blue-300/50 px-6 focus:outline-none focus:bg-blue-800 focus:border-blue-300 transition-all font-medium text-lg"
+                                            />
+                                        </div>
+                                        <div>
+                                            <input
+                                                type="email"
+                                                placeholder="Email Address"
+                                                className="w-full h-14 rounded-xl bg-blue-800/50 border border-blue-400/30 text-white placeholder:text-blue-300/50 px-6 focus:outline-none focus:bg-blue-800 focus:border-blue-300 transition-all font-medium text-lg"
+                                            />
+                                        </div>
+                                        <div>
+                                            <input
+                                                type="tel"
+                                                placeholder="Phone Number"
+                                                className="w-full h-14 rounded-xl bg-blue-800/50 border border-blue-400/30 text-white placeholder:text-blue-300/50 px-6 focus:outline-none focus:bg-blue-800 focus:border-blue-300 transition-all font-medium text-lg"
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="email" className="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Email Address</Label>
-                                        <Input id="email" type="email" placeholder="john@example.com" className="h-12 rounded-2xl border-slate-100 bg-slate-50 focus:bg-white transition-all text-sm font-bold placeholder:font-medium" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="phone" className="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Phone Number</Label>
-                                        <Input id="phone" placeholder="+91 98765 43210" className="h-12 rounded-2xl border-slate-100 bg-slate-50 focus:bg-white transition-all text-sm font-bold placeholder:font-medium" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label className="text-[11px] font-black uppercase tracking-widest text-slate-400 ml-1">Working Status</Label>
-                                        <Select>
-                                            <SelectTrigger className="h-12 rounded-2xl border-slate-100 bg-slate-50 focus:bg-white transition-all text-sm font-bold">
-                                                <SelectValue placeholder="Select Status" />
-                                            </SelectTrigger>
-                                            <SelectContent className="rounded-2xl border-slate-100 shadow-2xl">
-                                                <SelectItem value="student" className="font-bold py-3">Student</SelectItem>
-                                                <SelectItem value="jobseeker" className="font-bold py-3">Job Seeker</SelectItem>
-                                                <SelectItem value="professional" className="font-bold py-3">Working Professional</SelectItem>
-                                                <SelectItem value="other" className="font-bold py-3">Other</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <Button className="w-full h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-base mt-6 shadow-xl shadow-blue-500/20 active:scale-[0.98] transition-all">
-                                        Enquire Now
+
+                                    <Button className="w-full h-16 bg-[#FF6B35] hover:bg-orange-600 text-white rounded-xl font-bold text-xl mt-8 shadow-xl shadow-orange-900/30 transition-transform active:scale-95">
+                                        Submit Request
                                     </Button>
                                 </form>
-                            </motion.div>
-
-                            {/* Trust Badge / Decorative */}
-                            <div className="absolute -top-6 -left-6 w-20 h-20 bg-orange-100 rounded-3xl -z-0 rotate-12 blur-2xl opacity-50" />
-                            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-100 rounded-full -z-0 blur-3xl opacity-50" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             <div
-                className="relative py-20 overflow-hidden"
-                style={{ backgroundColor: course.themeColor }}
+                className="relative py-20 overflow-hidden bg-[#0066CC]"
             >
                 {/* Subtle overlay to soften the theme color if needed */}
                 <div className="absolute inset-0 bg-black/5 pointer-events-none" />
 
                 <div className="container mx-auto px-6 relative z-10">
                     <FeatureGrid />
+                </div>
+            </div>
+
+            {/* Smart Sticky Navigation Bar */}
+            <div className="sticky top-[72px] md:top-[112px] z-30 bg-white/90 backdrop-blur-lg border-b border-slate-200/60 py-4 mb-8 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]">
+                <div className="container mx-auto px-6 overflow-x-auto">
+                    <div className="flex items-center gap-1 md:gap-4 md:justify-center min-w-max">
+                        {[
+                            { id: "curriculum", label: "Curriculum", icon: BookOpen },
+                            { id: "outcomes", label: "Outcomes", icon: CheckCircle2 },
+                            { id: "tools", label: "Tools", icon: Monitor },
+                            { id: "instructor", label: "Instructor", icon: Users },
+                            { id: "faq", label: "FAQ", icon: Globe },
+                        ].map((item) => (
+                            <a
+                                key={item.id}
+                                href={`#${item.id}`}
+                                className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-slate-500 hover:text-[#0066CC] hover:bg-blue-50/50 transition-all border border-transparent hover:border-blue-100"
+                            >
+                                <item.icon className="w-4 h-4" />
+                                {item.label}
+                            </a>
+                        ))}
+                    </div>
                 </div>
             </div>
 
@@ -336,7 +343,7 @@ export default function CourseDetail() {
 
                         {/* Main Content */}
                         <div className="lg:col-span-2">
-                            <div className="mb-12">
+                            <div id="curriculum" className="mb-12 scroll-mt-40">
                                 <h2 className="text-3xl font-display font-bold text-slate-900 mb-6 flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
                                         <BookOpen className="w-5 h-5 text-blue-600" />
@@ -353,9 +360,8 @@ export default function CourseDetail() {
                                             key={mIdx}
                                             className={cn(
                                                 "border rounded-2xl transition-all duration-300 overflow-hidden",
-                                                activeModule === mIdx ? "shadow-md" : "border-slate-100"
+                                                activeModule === mIdx ? "shadow-md border-[#0066CC]/40 bg-blue-50/50" : "border-slate-100"
                                             )}
-                                            style={activeModule === mIdx ? { borderColor: `${course.themeColor}40`, backgroundColor: `${course.themeColor}08` } : {}}
                                         >
                                             <button
                                                 onClick={() => setActiveModule(activeModule === mIdx ? null : mIdx)}
@@ -363,8 +369,7 @@ export default function CourseDetail() {
                                             >
                                                 <div className="flex items-center gap-4">
                                                     <span
-                                                        className="w-8 h-8 rounded-full text-white text-xs font-bold flex items-center justify-center shrink-0"
-                                                        style={{ backgroundColor: course.themeColor }}
+                                                        className="w-8 h-8 rounded-full text-white text-xs font-bold flex items-center justify-center shrink-0 bg-[#0066CC] shadow-lg shadow-blue-500/20"
                                                     >
                                                         {mIdx + 1}
                                                     </span>
@@ -393,7 +398,7 @@ export default function CourseDetail() {
                                 </div>
                             </div>
 
-                            <div className="mb-20">
+                            <div id="outcomes" className="mb-20 scroll-mt-40">
                                 <div className="bg-slate-50/50 border border-slate-100 rounded-3xl p-6 md:p-12">
                                     <div className="text-center mb-12">
                                         <h2 className="text-3xl font-display font-bold text-slate-900 mb-4">What You'll Learn</h2>
@@ -424,7 +429,7 @@ export default function CourseDetail() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
-                                className="mb-20"
+                                id="tools" className="mb-20 scroll-mt-40"
                             >
                                 <div className="text-center mb-10">
                                     <h2 className="text-3xl font-display font-bold text-slate-900 mb-4 tracking-tight">Tools & Technologies</h2>
@@ -438,7 +443,7 @@ export default function CourseDetail() {
                                 </div>
                             </motion.div>
 
-                            <div className="mb-20">
+                            <div id="instructor" className="mb-20 scroll-mt-40">
                                 <h2 className="text-3xl font-display font-bold text-slate-900 mb-8 flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
                                         <Users className="w-5 h-5 text-blue-600" />
@@ -471,7 +476,7 @@ export default function CourseDetail() {
                                 </div>
                             </div>
 
-                            <div className="mb-12">
+                            <div id="faq" className="mb-12 scroll-mt-40">
                                 <h2 className="text-3xl font-display font-bold text-slate-900 mb-8 flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
                                         <Globe className="w-5 h-5 text-blue-600" />
@@ -497,36 +502,26 @@ export default function CourseDetail() {
                         <div className="lg:col-span-1">
                             <div className="sticky top-32 space-y-8">
                                 {/* Course Image Box - Static */}
-                                <div
-                                    className="relative w-full aspect-video md:aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl bg-white group transition-transform hover:scale-[1.02] duration-500"
-                                >
-                                    <img
-                                        src={course.image}
-                                        alt={course.title}
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                                </div>
+
 
                                 <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl shadow-blue-900/5 overflow-hidden group">
-                                    <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-950 p-8 text-white relative overflow-hidden">
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl" />
-                                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-400/10 rounded-full -ml-12 -mb-12 blur-2xl" />
-
-                                        <div className="relative text-center">
-                                            <div className="flex flex-col items-center gap-2 mb-4">
-                                                <div className="flex items-baseline justify-center gap-2">
-                                                    <span className="text-3xl font-extrabold tracking-tight whitespace-nowrap">{course.price}</span>
-                                                    <span className="text-sm text-blue-300/60 line-through font-medium whitespace-nowrap">{course.originalPrice}</span>
-                                                </div>
-                                                <div className="inline-flex items-center px-4 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-blue-100 text-[9px] font-bold uppercase tracking-[0.2em]">
-                                                    Limited Time Offer
-                                                </div>
-                                            </div>
+                                    {/* Unified Course Header Image */}
+                                    <div className="relative h-48 overflow-hidden">
+                                        <img src={course.image} alt={course.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#003366] to-transparent opacity-90" />
+                                        <div className="absolute bottom-0 left-0 p-6">
+                                            <span className="inline-block px-3 py-1 rounded-lg bg-orange-500 text-white text-[10px] font-bold uppercase tracking-widest shadow-lg mb-2">
+                                                {course.category}
+                                            </span>
+                                            <h3 className="text-white font-bold text-xl leading-tight">{course.title}</h3>
                                         </div>
                                     </div>
-
-                                    <div className="p-8">
+                                    <div className="p-6">
+                                        <div className="flex items-end gap-3 mb-8">
+                                            <span className="text-3xl font-black text-slate-900">{course.price}</span>
+                                            <span className="text-lg text-slate-400 line-through font-bold mb-1">{course.originalPrice}</span>
+                                            <span className="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full mb-1 ml-auto">20% OFF</span>
+                                        </div>
                                         <div className="space-y-6 mb-8">
                                             {[
                                                 { icon: Clock, label: "Duration", value: course.duration, color: "blue" },
@@ -538,11 +533,11 @@ export default function CourseDetail() {
                                                     <div className="flex items-center gap-3">
                                                         <div className={cn(
                                                             "w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0",
-                                                            item.color === "blue" ? "bg-blue-50 group-hover/item:bg-blue-100" : "bg-indigo-50 group-hover/item:bg-indigo-100"
+                                                            item.color === "blue" ? "bg-blue-50 group-hover/item:bg-blue-100" : "bg-blue-50 group-hover/item:bg-blue-100"
                                                         )}>
                                                             <item.icon className={cn(
                                                                 "w-4.5 h-4.5",
-                                                                item.color === "blue" ? "text-blue-600" : "text-indigo-600"
+                                                                item.color === "blue" ? "text-[#0066CC]" : "text-[#0066CC]"
                                                             )} />
                                                         </div>
                                                         <span className="text-slate-500 font-bold text-[11px] uppercase tracking-wider">{item.label}</span>
@@ -562,17 +557,18 @@ export default function CourseDetail() {
                                         <div className="space-y-4">
                                             <Button
                                                 onClick={handleEnroll}
-                                                className="w-full h-15 bg-gradient-to-r from-blue-900 to-indigo-900 hover:from-blue-950 hover:to-indigo-950 text-white rounded-[1.25rem] font-bold text-lg shadow-xl shadow-blue-900/20 active:scale-95 transition-all duration-300"
+                                                className="w-full h-14 bg-[#FF6B35] hover:bg-[#ff8559] text-white rounded-[1.25rem] font-bold text-lg shadow-xl shadow-orange-500/20 active:scale-95 transition-all duration-300"
                                             >
-                                                Book Your Seat Now
+                                                Enroll Now
+                                            </Button>
+                                            <Button
+                                                variant="outline"
+                                                className="w-full h-12 bg-white border-blue-100 text-[#0066CC] hover:bg-blue-50 rounded-[1.25rem] font-bold text-base transition-all"
+                                            >
+                                                Download Syllabus
                                             </Button>
 
-                                            <div className="flex items-center justify-center gap-2 group/guarantee py-2">
-                                                <div className="w-5 h-5 rounded-full bg-green-50 flex items-center justify-center group-hover/guarantee:bg-green-100 transition-colors">
-                                                    <CheckCircle2 className="w-3 h-3 text-green-600" />
-                                                </div>
-                                                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover/guarantee:text-green-600 transition-colors">Money Back Guarantee</span>
-                                            </div>
+
                                         </div>
                                     </div>
 
@@ -608,8 +604,7 @@ export default function CourseDetail() {
                                                 <Link key={related.id} to={`/course/${related.slug}`} className="block group/item">
                                                     <div className="flex gap-4 items-center">
                                                         <div
-                                                            className="w-16 h-16 rounded-2xl shrink-0 flex items-center justify-center p-3 transition-transform group-hover/item:scale-110"
-                                                            style={{ backgroundColor: related.themeColor }}
+                                                            className="w-16 h-16 rounded-2xl shrink-0 flex items-center justify-center p-3 transition-transform group-hover/item:scale-110 bg-blue-50"
                                                         >
                                                             <img src={related.image} alt={related.title} className="w-full h-full object-contain drop-shadow-lg" />
                                                         </div>

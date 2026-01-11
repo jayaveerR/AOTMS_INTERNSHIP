@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Calendar } from "lucide-react";
+import { Calendar, Cpu } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface EventItem {
@@ -35,55 +35,75 @@ export const UpcomingHackathons = ({ onSelect, selectedId }: UpcomingHackathonsP
         fetchHackathons();
     }, []);
 
-    // Use fetched data directly without duplication for standard scrolling
     const displayHackathons = fetchedHackathons;
 
     return (
-        <div className="h-[600px] bg-white relative overflow-hidden font-sans border-r border-slate-100 pr-2">
+        <div className="h-full min-h-[400px] bg-white/80 backdrop-blur border border-[#0066CC]/20 rounded-xl relative overflow-hidden font-sans shadow-lg shadow-slate-200/50">
             {/* Header */}
-            <div className="flex items-center gap-3 mb-6 px-4 pt-4">
-                <div className="w-3 h-3 bg-orange-500 rounded-full shrink-0" />
-                <h2 className="text-sm font-bold text-blue-900 tracking-[0.1em] uppercase">
-                    Browse Hackathons
+            <div className="flex items-center gap-3 mb-2 px-6 pt-6 border-b border-[#0066CC]/20 pb-4 bg-slate-50/80">
+                <Cpu className="w-4 h-4 text-[#FF6B35] animate-pulse" />
+                <h2 className="text-xs font-mono font-bold text-[#0066CC] tracking-[0.2em] uppercase">
+                    Available_Nodes
                 </h2>
+                <div className="ml-auto text-[10px] text-slate-500 font-mono">
+                    {displayHackathons.length} FOUND
+                </div>
             </div>
 
-            <div className="relative h-[calc(100%-80px)] overflow-y-auto pr-2 pb-4 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent">
-                <div className="flex flex-col gap-4">
+            <div className="relative h-[calc(100%-70px)] overflow-y-auto px-4 pb-4 scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent">
+                <div className="flex flex-col gap-3 pt-4">
                     {displayHackathons.map((hackathon, idx) => (
                         <div key={`${hackathon.id}-${idx}`} className="w-full">
                             <div
                                 onClick={() => onSelect?.(hackathon)}
-                                // Remove scale/hover effects
                                 className={cn(
-                                    "cursor-pointer transition-all duration-200",
-                                    "bg-white border text-left rounded-2xl overflow-hidden shadow-sm flex flex-col h-auto",
-                                    selectedId === hackathon.id ? "border-orange-500 shadow-md ring-1 ring-orange-200" : "border-slate-200 hover:border-slate-300 hover:shadow-md"
+                                    "cursor-pointer transition-all duration-300 group",
+                                    "bg-slate-50 border text-left rounded-lg overflow-hidden flex flex-col h-auto relative",
+                                    selectedId === hackathon.id
+                                        ? "border-[#FF6B35] shadow-[0_0_15px_rgba(255,107,53,0.3)] scale-[1.02] bg-white"
+                                        : "border-slate-200 hover:border-[#0066CC]/50 hover:shadow-md hover:bg-white"
                                 )}
                             >
-                                {/* Banner Image Area - Compact (h-24) */}
-                                <div className="relative h-32 shrink-0 overflow-hidden bg-slate-100">
-                                    <img
-                                        src={hackathon.thumbnailUrl}
-                                        alt={hackathon.name}
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <div className="absolute top-2 right-2">
-                                        <span className="bg-orange-500/90 backdrop-blur text-white px-2 py-0.5 rounded-full text-[8px] font-bold uppercase tracking-wider">
-                                            {hackathon.mode}
-                                        </span>
+                                {/* Active Indicator Line */}
+                                {selectedId === hackathon.id && (
+                                    <div className="absolute top-0 bottom-0 left-0 w-1 bg-[#FF6B35] z-10" />
+                                )}
+
+                                {/* Card Content */}
+                                <div className="p-3 flex gap-4">
+                                    {/* Tiny Thumbnail */}
+                                    <div className="w-20 h-20 shrink-0 bg-slate-200 rounded border border-slate-200 overflow-hidden relative group-hover:border-[#0066CC]/30 transition-colors">
+                                        <img
+                                            src={hackathon.thumbnailUrl}
+                                            alt={hackathon.name}
+                                            className="w-full h-full object-cover opacity-90 group-hover:opacity-100 mix-blend-multiply"
+                                        />
                                     </div>
-                                </div>
 
-                                {/* Content Area - Compact (p-3) */}
-                                <div className="p-4 flex flex-col gap-2 bg-white">
-                                    <h3 className="text-sm font-bold text-slate-800 leading-snug line-clamp-2">
-                                        {hackathon.name}
-                                    </h3>
+                                    <div className="flex-1 min-w-0 flex flex-col justify-center">
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <span className={cn(
+                                                "text-[8px] font-bold px-1.5 py-0.5 rounded border uppercase tracking-wider",
+                                                hackathon.mode === 'Offline'
+                                                    ? "bg-[#0066CC]/10 border-[#0066CC]/20 text-[#0066CC]"
+                                                    : "bg-[#FF6B35]/10 border-[#FF6B35]/20 text-[#FF6B35]"
+                                            )}>
+                                                {hackathon.mode}
+                                            </span>
+                                            <span className="text-[9px] text-slate-400 font-mono">#{hackathon.id.substring(0, 4)}</span>
+                                        </div>
 
-                                    <div className="flex items-center gap-1.5 text-slate-400 font-bold text-[9px] uppercase tracking-wider mt-auto">
-                                        <Calendar className="w-2.5 h-2.5" />
-                                        {hackathon.date}
+                                        <h3 className={cn(
+                                            "text-sm font-bold leading-tight line-clamp-2 mb-2 transition-colors",
+                                            selectedId === hackathon.id ? "text-[#FF6B35]" : "text-slate-700 group-hover:text-[#0066CC]"
+                                        )}>
+                                            {hackathon.name}
+                                        </h3>
+
+                                        <div className="flex items-center gap-2 text-[10px] text-slate-500 font-mono">
+                                            <Calendar className="w-3 h-3 text-slate-400" />
+                                            {hackathon.date}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

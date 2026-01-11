@@ -20,30 +20,31 @@ const reasons = [
 
 export const WhyChooseUs = () => {
   return (
-    <section className="py-8 md:py-12 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-20 bg-background relative overflow-hidden">
       {/* Background Accents */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-50 rounded-full blur-[120px] pointer-events-none opacity-60" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-indigo-50 rounded-full blur-[100px] pointer-events-none opacity-60" />
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none opacity-60" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] pointer-events-none opacity-60" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
 
-      <div className="container mx-auto px-6 relative">
-        <div className="text-center mb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="text-center mb-10">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block px-4 py-1 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold tracking-widest uppercase mb-3"
+            className="inline-block px-4 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-bold tracking-widest uppercase mb-3 border border-accent/20"
           >
-            Why TechVarsity
+            Why Choose AOTMS
           </motion.span>
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
-            The TechVarsity <span className="text-blue-600">Difference</span>
+          <h2 className="text-3xl md:text-5xl font-black text-primary tracking-tight mb-4 font-display">
+            The Academy <span className="text-accent">Difference</span>
           </h2>
-          <p className="text-xs md:text-sm text-slate-500 font-semibold max-w-2xl mx-auto leading-relaxed">
-            We're more than just a training center. We're a <span className="text-slate-900 font-bold">career launchpad</span>.
+          <p className="text-xs md:text-sm text-muted-foreground font-semibold max-w-2xl mx-auto leading-relaxed">
+            We're more than just a training center. We're a <span className="text-primary font-bold">career launchpad</span>.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 pl-4 pr-4">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.title}
@@ -56,7 +57,7 @@ export const WhyChooseUs = () => {
               <div className="relative mb-8">
                 <motion.div
                   whileHover={{ scale: 1.05, rotate: 2 }}
-                  className="w-[180px] h-[180px] rounded-full overflow-hidden border-[8px] border-white shadow-xl shadow-blue-500/5 relative z-10"
+                  className="w-[230px] h-[230px] rounded-full overflow-hidden border-[6px] border-background shadow-2xl shadow-primary/10 relative z-10 ring-1 ring-border"
                 >
                   <img
                     src={reason.image}
@@ -65,13 +66,13 @@ export const WhyChooseUs = () => {
                   />
                 </motion.div>
                 {/* Decorative Ring */}
-                <div className="absolute -inset-3 border border-blue-100 rounded-full scale-90 opacity-0 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
+                <div className="absolute -inset-4 border-2 border-accent/30 rounded-full scale-90 opacity-0 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
               </div>
 
-              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors font-display">
                 {reason.title}
               </h3>
-              <p className="text-xs md:text-sm text-slate-500 font-medium leading-relaxed max-w-[240px]">
+              <p className="text-xs md:text-sm text-muted-foreground font-medium leading-relaxed max-w-[240px]">
                 {reason.description}
               </p>
             </motion.div>
